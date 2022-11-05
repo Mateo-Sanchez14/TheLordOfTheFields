@@ -1,10 +1,8 @@
 import sys
-from vistas.VentanaPrincial import VentanaPrincipal
-
+from principal.vistas.VentanaPrincipal import VentanaPrincipal
 
 def __main__():
-    app = VentanaPrincipal()
-    app.mainloop()
+    VentanaPrincipal().run()
 
 if __name__ == "__main__":
     __main__()

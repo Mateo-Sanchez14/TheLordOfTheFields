@@ -1,20 +1,39 @@
-import tkinter as tk
-from tkinter import ttk
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.image import Image
+from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 
-class VentanaPrincipal(tk.Tk):
+class VentanaPrincipal(App):
     def __init__(self):
-        super().__init__()
-    
-        # Configure Window
-        self.title("Mi ventana principal")
-        self.geometry("800x600")
-        self.resizable(0,0)
-        self.config(bg = "green")
+        super(VentanaPrincipal, self).__init__()
+        self.window = None
 
-        self.crear_gui()
+    def build(self):
+        self.window = GridLayout()
+        self.window.cols = 2
+        self.window.add_widget(Label(text="Nombre:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Apellido:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Edad:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Sexo:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Email:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Telefono:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Direccion:"))
+        self.window.add_widget(TextInput(multiline=False))
+        self.window.add_widget(Label(text="Ciudad:"))
+        self.window.add_widget(TextInput(multiline=False))
 
+        self.window.add_widget(Button(text="Guardar"))
+        self.window.add_widget(Button(text="Cancelar"))
 
-    def crear_gui(self):
-        self.etiqueta = ttk.Label(self, text = "Hola mundo")
-        self.etiqueta.grid(column=0, row=0, padx=10, pady=10)
+        # add widgets to window
+
+        return self.window
 
