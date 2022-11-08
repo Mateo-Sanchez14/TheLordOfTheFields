@@ -1,39 +1,40 @@
-from kivy.app import App
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+from kivy.metrics import dp
+from ventana.vistas.VentanaVista import Vista
+class VentanaPrincipal(MDApp):
 
-class VentanaPrincipal(App):
-    def __init__(self):
-        super(VentanaPrincipal, self).__init__()
-        self.window = None
-
+    #Metodo que se ejecuta al iniciar la aplicacion
     def build(self):
-        self.window = GridLayout()
-        self.window.cols = 2
-        self.window.add_widget(Label(text="Nombre:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Apellido:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Edad:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Sexo:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Email:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Telefono:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Direccion:"))
-        self.window.add_widget(TextInput(multiline=False))
-        self.window.add_widget(Label(text="Ciudad:"))
-        self.window.add_widget(TextInput(multiline=False))
+        #self.root = Builder.load_file("src/principal/vistas/ventana_principal.kv")
+        #Se crea una pantalla
+        screen = Screen()
+        #Se crea un layout de tipo BoxLayout
+        box = BoxLayout(orientation='vertical')
+        #Se crea un layout de tipo GridLayout
+        grid = GridLayout(cols=2, size_hint_y=None)
+        #Se asegura que el alto es suficiente para poder hacer scroll
+        grid.bind(minimum_height=grid.setter('height'))
+        #Se agrega un label en la primera celda
+        grid.add_widget(Label(text='Ejecutar sentencia SQL:'))
+        #Se agrega un TextInput en la segunda celda
+        self.textinput = TextInput(multiline=False)
+        grid.add_widget(self.textinput)
+        #Se agrega un boton en la tercera celda
+        button = Button(text='Ejecutar', on_press=self.abrir_ventana_consulta)
+        grid.add_widget(button)
+        #Se agrega el GridLayout al BoxLayout
+        box.add_widget(grid)
+        #Se agrega el BoxLayout a la pantalla
+        screen.add_widget(box)
+        return screen
 
-        self.window.add_widget(Button(text="Guardar"))
-        self.window.add_widget(Button(text="Cancelar"))
-
-        # add widgets to window
-
-        return self.window
-
+    def abrir_ventana_consulta(self, obj):
+        Vista(self.textinput.text).run()

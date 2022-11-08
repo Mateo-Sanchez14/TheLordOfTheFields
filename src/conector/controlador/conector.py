@@ -4,6 +4,7 @@ from mysql.connector import Error
 
 class Conector:
     def __init__(self):
+        self.columnas = []
         try:
             connection = mysql.connector.connect(host='localhost',
                                                  database='TFI',
@@ -29,11 +30,12 @@ class Conector:
         try:
             connection = mysql.connector.connect(host='localhost',
                                                  database='TFI',
-                                                 user='root',
-                                                 password='Mateo141020')
+                                                 user='usario',
+                                                 password='votohomosexual')
             if connection.is_connected():
                 cursor = connection.cursor()
                 cursor.execute(query)
+                self.columnas = cursor.column_names
                 record = cursor.fetchall()
                 return record
         except Error as e:
