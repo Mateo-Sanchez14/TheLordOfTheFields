@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from principal.vistas.VentanaPrincipal import VentanaPrincipal
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -10,6 +14,11 @@ from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
 from kivymd.uix.datatables import MDDataTable
 from conector.controlador.conector import Conector
+from kivy.uix.screenmanager import ScreenManager, Screen
+#import VentanaPrincipal
+
+#from principal.vistas.VentanaPrincipal import VentanaPrincipal as Ventana
+
 
 class Vista(MDApp):
     def __init__(self,query):
@@ -18,7 +27,7 @@ class Vista(MDApp):
     def build(self):
         screen = Screen()
         self.theme_cls.primary_palette = "Blue"
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Light"
 
         # Create a BoxLayout with default orientation
         box = BoxLayout(orientation='vertical')
@@ -27,14 +36,15 @@ class Vista(MDApp):
         # Make sure the height is such that there is something to scroll.
         grid.bind(minimum_height=grid.setter('height'))
         # Add a Label in the first cell
-        grid.add_widget(Label(text='Ejecutar sentencia SQL:'))
+        grid.add_widget(Label(text='Vista de la consulta:'))
         # Add a TextInput in the second cell
-        self.textinput = TextInput(multiline=False)
-        grid.add_widget(self.textinput)
+
 
         # Add a Button in the third cell
-        button = Button(text='Ejecutar', on_press=self.show_data)
-        grid.add_widget(button)
+        buttonUpdate = Button(text='Actualizar', on_press=self.show_data)
+        grid.add_widget(buttonUpdate)
+        buttonBack = Button(text='Volver', on_press=self.back)
+        grid.add_widget(buttonBack)
 
         # Add the GridLayout to the BoxLayout
         box.add_widget(grid)
@@ -57,11 +67,9 @@ class Vista(MDApp):
         return screen
 
     def show_data(self, obj):
-        # conector = Conector()
-        # data = conector.select(self.textinput.text)
-        # columnas = conector.columnas
-        # columnitas = [(x,dp(30)) for x in columnas]
-        # print(columnitas)
-        # self.table.row_data = data
-        self.data = self.conector.select(self.textinput.text)
+        self.data = self.conector.select(self.query)
         self.table.row_data = self.data
+
+    def back(self, obj):
+        self.stop()
+        VentanaPrincipal.run()

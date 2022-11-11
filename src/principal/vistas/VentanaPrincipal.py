@@ -13,7 +13,6 @@ class VentanaPrincipal(MDApp):
 
     #Metodo que se ejecuta al iniciar la aplicacion
     def build(self):
-        #self.root = Builder.load_file("src/principal/vistas/ventana_principal.kv")
         #Se crea una pantalla
         screen = Screen()
         #Se crea un layout de tipo BoxLayout
@@ -22,6 +21,7 @@ class VentanaPrincipal(MDApp):
         grid = GridLayout(cols=2, size_hint_y=None)
         #Se asegura que el alto es suficiente para poder hacer scroll
         grid.bind(minimum_height=grid.setter('height'))
+
         #Se agrega un label en la primera celda
         grid.add_widget(Label(text='Ejecutar sentencia SQL:'))
         #Se agrega un TextInput en la segunda celda
@@ -37,4 +37,5 @@ class VentanaPrincipal(MDApp):
         return screen
 
     def abrir_ventana_consulta(self, obj):
+        self.stop()
         Vista(self.textinput.text).run()
