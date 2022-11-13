@@ -1,6 +1,5 @@
 import sys
 from principal.vistas.VentanaPrincipal import VentanaPrincipal
-from principal.vistas.VentanaPrincipalKiviMD import DemoApp
 from conector.controlador.conector import Conector
 
 

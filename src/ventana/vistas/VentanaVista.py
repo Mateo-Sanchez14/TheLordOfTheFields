@@ -1,23 +1,23 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+
+import principal
+
 if TYPE_CHECKING:
     from principal.vistas.VentanaPrincipal import VentanaPrincipal
 from kivymd.app import MDApp
-from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
-from kivy.uix.image import Image
 from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
 from kivymd.uix.datatables import MDDataTable
 from conector.controlador.conector import Conector
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
+#from ventana.controladores.VentanaAgregar import Agregar
 #import VentanaPrincipal
 
-#from principal.vistas.VentanaPrincipal import VentanaPrincipal as Ventana
+#from principal.vistas.VentanaPrincipal import VentanaPrincipal as VentanaP
 
 
 class Vista(MDApp):
@@ -27,7 +27,7 @@ class Vista(MDApp):
     def build(self):
         screen = Screen()
         self.theme_cls.primary_palette = "Blue"
-        self.theme_cls.theme_style = "Light"
+        self.theme_cls.theme_style = "Dark"
 
         # Create a BoxLayout with default orientation
         box = BoxLayout(orientation='vertical')
@@ -43,6 +43,8 @@ class Vista(MDApp):
         # Add a Button in the third cell
         buttonUpdate = Button(text='Actualizar', on_press=self.show_data)
         grid.add_widget(buttonUpdate)
+        buttonAdd=Button(text='Agregar')
+        grid.add_widget(buttonAdd)
         buttonBack = Button(text='Volver', on_press=self.back)
         grid.add_widget(buttonBack)
 
@@ -60,8 +62,8 @@ class Vista(MDApp):
             size_hint=(0.9, 0.6),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
             check=True,
-            column_data= columnitas,
-            row_data= self.data,
+            column_data=columnitas,
+            row_data=self.data,
         )
         screen.add_widget(self.table)
         return screen
@@ -72,4 +74,8 @@ class Vista(MDApp):
 
     def back(self, obj):
         self.stop()
-        VentanaPrincipal.run()
+        #principal.vistas.VentanaPrincipal.root_window()
+    #def add(self, obj):
+    #    self.stop()
+    #    Agregar().run()
+

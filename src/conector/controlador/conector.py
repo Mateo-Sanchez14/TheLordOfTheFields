@@ -9,7 +9,7 @@ class Conector:
             connection = mysql.connector.connect(host='localhost',
                                                  database='TFI',
                                                  user='root',
-                                                 password='Mateo141020')
+                                                 password='So100718')
             if connection.is_connected():
                 db_Info = connection.get_server_info()
                 print("Connected to MySQL Server version ", db_Info)
@@ -30,8 +30,8 @@ class Conector:
         try:
             connection = mysql.connector.connect(host='localhost',
                                                  database='TFI',
-                                                 user='usario',
-                                                 password='votohomosexual')
+                                                 user='root',
+                                                 password='So100718')
             if connection.is_connected():
                 cursor = connection.cursor()
                 cursor.execute(query)
