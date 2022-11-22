@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import principal
@@ -54,7 +53,7 @@ class Vista(MDApp):
         screen.add_widget(box)
 
         self.conector = Conector()
-        self.data = self.conector.select(self.query)
+        self.data = self.conector.call_view(self.query)
         columnas = self.conector.columnas
         columnitas = [(x, dp(30)) for x in columnas]
 
@@ -75,7 +74,6 @@ class Vista(MDApp):
     def back(self, obj):
         self.stop()
         #principal.vistas.VentanaPrincipal.root_window()
-    #def add(self, obj):
-    #    self.stop()
-    #    Agregar().run()
+        #def add(self, obj):
+        #Agregar().run()
 
