@@ -40,9 +40,11 @@ class Vista(MDApp):
 
 
         # Add a Button in the third cell
-        buttonUpdate = Button(text='Actualizar', on_press=self.show_data)
+        buttonUpdate = Button(text='Actualizar', on_press=self.show_data, state='down')
+        buttonUpdate.disabled = True
         grid.add_widget(buttonUpdate)
         buttonAdd=Button(text='Agregar')
+        buttonAdd.disabled = True
         grid.add_widget(buttonAdd)
         buttonBack = Button(text='Volver', on_press=self.back)
         grid.add_widget(buttonBack)

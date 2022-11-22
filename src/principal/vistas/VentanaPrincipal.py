@@ -8,6 +8,8 @@ from kivy.uix.image import Image, AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
+
+from ventana.vistas.VentanaEgreso import VentanaEgreso
 from ventana.vistas.VentanaVista import Vista
 class VentanaPrincipal(MDApp):
 
@@ -75,17 +77,22 @@ class VentanaPrincipal(MDApp):
         box.add_widget(grid, index=2)
 
         #Se agrega un boton en la pantalla
-        button = Button(text='Agregar Ingreso', on_press=self.abrir_ventana_agregar, size_hint=(1, 0.1))
+        button = Button(text='Agregar Ingreso', on_press=self.abrir_ventana_ingreso, size_hint=(1, 0.1))
         box.add_widget(button, index=0)
         #Se agrega el BoxLayout a la pantalla
-        button = Button(text='Agregar Egreso', on_press=self.abrir_ventana_agregar, size_hint=(1, 0.1))
+        button = Button(text='Agregar Egreso', on_press=self.abrir_ventana_Egreso, size_hint=(1, 0.1))
         box.add_widget(button, index=0)
         screen.add_widget(box)
         return screen
 
-    def abrir_ventana_agregar(self, obj):
+    def abrir_ventana_Egreso(self, obj):
         self.stop()
-        #Vista(self.textinput.text).run()
+        VentanaEgreso().run()
+        self.run()
+
+    def abrir_ventana_ingreso(self, obj):
+        self.stop()
+
         self.run()
 
     def abrir_partes_maquina(self, obj):

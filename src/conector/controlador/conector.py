@@ -88,3 +88,22 @@ class Conector:
                 connection.close()
                 print("MySQL connection is closed")
 
+    def insert(self, query):
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='TFI',
+                                                 user=credentials.user,
+                                                 password=credentials.password)
+            if connection.is_connected():
+                cursor = connection.cursor()
+                cursor.execute(query)
+                connection.commit()
+                return True
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+            return False
+        finally:
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
