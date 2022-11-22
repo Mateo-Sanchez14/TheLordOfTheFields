@@ -72,12 +72,14 @@ class VentanaPrincipal(MDApp):
 
 
         #Se agrega el GridLayout al BoxLayout
-        box.add_widget(grid, index=1)
+        box.add_widget(grid, index=2)
 
         #Se agrega un boton en la pantalla
-        button = Button(text='Agregar', on_press=self.abrir_ventana_agregar, size_hint=(1, 0.1))
+        button = Button(text='Agregar Ingreso', on_press=self.abrir_ventana_agregar, size_hint=(1, 0.1))
         box.add_widget(button, index=0)
         #Se agrega el BoxLayout a la pantalla
+        button = Button(text='Agregar Egreso', on_press=self.abrir_ventana_agregar, size_hint=(1, 0.1))
+        box.add_widget(button, index=0)
         screen.add_widget(box)
         return screen
 
